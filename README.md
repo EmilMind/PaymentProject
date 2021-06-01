@@ -5,7 +5,7 @@
 
 [![Build Status](https://travis-ci.com/EmilMind/PaymentProject.svg?branch=main)](https://travis-ci.com/github/EmilMind/PaymentProject)
 
-За основу в данном задании был взят проект имитирующий добавление и хранения банковских карт. Взят с открытого репозитория [GitHub][df1].
+За основу в данном задании был взят проект, имитирующий добавление и хранения банковских карт. Взят с открытого репозитория [GitHub][df1].
 В главных ролях:
 - Angular 11
 - Asp.Net Core 5.0 Web API CRUD
@@ -20,7 +20,7 @@
 > В данной части блога я хотел бы рассказать вам,
 > как запустить приложение Angular в контейнере Docker.
 > Контейнер — это среда в которой выполняется код.
-> Поэтому его необходимо предворительно настроить
+> Поэтому ее необходимо предварительно настроить
 > и адаптировать для запуска и работы приложения.
 
 
@@ -50,9 +50,9 @@ COPY --from=builder /usr/src/app/dist/PaymentApp/ /usr/share/nginx/html
 
 Конфигурация реализуется с помощью файла docker-compose.yml 
 Данный файл позволяет описать все необходимое окружения для работы данного приложения (проброс портов, подключение вольюмов и локальных сетей, зависимости запуска от других контейнеров).
-- Процесс сборки образа по Dockerfile выполняется с помошью команды: _docker-compose -f docker-compose.yml build_
+- Процесс сборки образа по Dockerfile выполняется с помощью команды: _docker-compose -f docker-compose.yml build_
 - Загрузка данного образа в репозиторий Docker Hub для его хранения: _docker-compose -f docker-compose.yml push_
-- Запуск контейнеров, описанных в даннов файле: _docker-compose -f docker-compose.yml up_
+- Запуск контейнеров, описанных в данном файле: _docker-compose -f docker-compose.yml up_
  
 ```docker-compose.yml
 version: '3.8'
@@ -75,7 +75,7 @@ networks:
 ```
 
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+[//]: 
 
    [df1]: <https://github.com/CodAffection/Asp.Net-Core-5.0-Web-API-CRUD-with-Angular-11>
    [df2]: <https://gitlab.com/emilmind/paymentproject>
