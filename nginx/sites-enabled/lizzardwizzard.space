@@ -1,0 +1,38 @@
+server {
+        # Базовые настройки
+        index index.html index.htm;
+        server_name lizzardwizzard.space;
+
+        # Обработка страниц ошибок
+        error_page 404 /error-pages/404.html;
+        error_page 500 /error-pages/500.html;
+        error_page 502 /error-pages/500.html;
+
+        location /error-pages {
+                #return 200 '$uri'; 
+                alias /usr/share/nginx/html;
+                try_files $uri $uri =404;
+        }
+
+        # Ангуляр проект
+        location / {
+                proxy_pass http://80.78.245.84:4321;
+
+                # Для того чтобы работали файлы
+                location ~* \.(js|css|scss|ttf|ico|svg|jpg|png|pdf)$ {
+                proxy_pass http://80.78.245.84:4321;
+                access_log   off;
+                }
+        }
+
+        # Проксирование на контейнер с API
+        location /api {
+            proxy_pass http://80.78.245.84:61236/api;
+    }   
+
+}
+server {
+    listen 80 ;
+    server_name lizzardwizzard.space;
+    return 404;
+}

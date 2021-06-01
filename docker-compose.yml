@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+    api:
+        container_name: Payment.API
+        image: emilmind/deep-dark-repo:travis_API
+        pull_policy: always
+        ports: 
+            - "61236:80"
+        depends_on:
+            - postgersql
+        networks:
+            - Payment.LocalNetwork
+
+    angular:
+        container_name: Payment.Angular
+        image: emilmind/deep-dark-repo:travis_ANGULAR
+        pull_policy: always
+        ports: 
+            - "4321:80"
+        depends_on:
+            - api
+        networks:
+            - Payment.LocalNetwork
+
+    nginx:
+        container_name: Payment.Nginx
+        restart: always
+        image: emilmind/deep-dark-repo:travis_NGINX
+        command: nginx -g 'daemon off;'
+        ports: 
+            - "80:80"
+ #           - "443:443"
+        environment:
+            - VIRTUAL_HOST=www.stage.sezinno.ru
+            - VIRTUAL_PORT=80           
+
+        depends_on:
+            - angular
+        networks:
+            - Payment.LocalNetwork
+
+    postgersql:
+        container_name: Payment.PostreSQL
+        image: postgres:13
+        restart: unless-stopped
+        ports: 
+            - "5432:5432"
+        volumes:
+            - PGData:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=popipupy111     
+        networks:
+            - Payment.LocalNetwork
+
+networks:
+    Payment.LocalNetwork:
+        driver: bridge
+        name: Payment.LocalNetwork
+volumes: 
+    PGData:

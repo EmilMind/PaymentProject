@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+    api:
+        image: emilmind/deep-dark-repo:travis_API
+        build: ./PaymentAPI
+    angular:
+        image: emilmind/deep-dark-repo:travis_ANGULAR
+        build: ./PaymentApp
+    nginx:
+        image: emilmind/deep-dark-repo:travis_NGINX
+        build: ./nginx
